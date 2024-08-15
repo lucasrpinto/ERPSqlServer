@@ -1,0 +1,54 @@
+unit uPrincipal;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, uDTMConexao;
+
+type
+  TdtmPrincipal = class(TForm)
+    mainPrincipal: TMainMenu;
+    CADASTRO1: TMenuItem;
+    MOVIMENTAO1: TMenuItem;
+    RELATRIOS1: TMenuItem;
+    menuCliente: TMenuItem;
+    N1: TMenuItem;
+    menuCategoria: TMenuItem;
+    menuProduto: TMenuItem;
+    N2: TMenuItem;
+    menuFechar: TMenuItem;
+    VENDAS1: TMenuItem;
+    CLIENTE2: TMenuItem;
+    N3: TMenuItem;
+    PRODUTO1: TMenuItem;
+    N4: TMenuItem;
+    VENDA1: TMenuItem;
+    N5: TMenuItem;
+    procedure menuFecharClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  dtmPrincipal: TdtmPrincipal;
+
+implementation
+
+{$R *.dfm}
+
+procedure TdtmPrincipal.FormCreate(Sender: TObject);
+begin
+  dtmPrincipal := TdtmPrincipal.Create(Self);
+  dtmPrincipal.
+end;
+
+procedure TdtmPrincipal.menuFecharClick(Sender: TObject);
+begin
+  Application.Terminate;
+end;
+
+end.

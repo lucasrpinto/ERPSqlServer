@@ -1,0 +1,93 @@
+unit uPrincipal;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, uDTMConexao;
+
+type
+  TdtmPrincipal = class(TForm)
+    mainPrincipal: TMainMenu;
+    CADASTRO1: TMenuItem;
+    MOVIMENTAO1: TMenuItem;
+    RELATRIOS1: TMenuItem;
+    menuCliente: TMenuItem;
+    N1: TMenuItem;
+    menuCategoria: TMenuItem;
+    menuProduto: TMenuItem;
+    N2: TMenuItem;
+    menuFechar: TMenuItem;
+    VENDAS1: TMenuItem;
+    CLIENTE2: TMenuItem;
+    N3: TMenuItem;
+    PRODUTO1: TMenuItem;
+    N4: TMenuItem;
+    VENDA1: TMenuItem;
+    N5: TMenuItem;
+    procedure menuFecharClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure menuCategoriaClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  dtmPrincipal: TdtmPrincipal;
+
+
+implementation
+
+{$R *.dfm}
+
+
+
+procedure TdtmPrincipal.menuCategoriaClick(Sender: TObject);
+begin
+  frmCadCategorias := TfrmCadCategorias.Create(self);
+  frmCadCategorias.ShowModal;
+  frmCadCategorias.Release;
+
+{  frmCadCategorias: TfrmCadCategorias;}
+end;
+
+ // Conexão com o Banco de Dados
+procedure TdtmPrincipal.FormCreate(Sender: TObject);
+begin
+  dtmConexao := TdtmConexao.Create(Self);
+  dtmConexao.ConexaoDB.SQLHourGlass := True;
+
+  // Configuração do Banco de Dados
+  {dtmConexao.ConexaoDB.Protocol := 'mssql';
+  dtmConexao.ConexaoDB.LibraryLocation := 'C:\Workspace\Andamento\ERP_SQLServer\ntwdblib.dll';
+  dtmConexao.ConexaoDB.HostName := '.\SQL2014';
+  dtmConexao.ConexaoDB.Port := 1433;
+  dtmConexao.ConexaoDB.User := 'sa';
+  dtmConexao.ConexaoDB.Password := '2014';
+  dtmConexao.ConexaoDB.Database := 'vendas';
+
+  dtmConexao.ConexaoDB.Connected := True;}
+  with dtmConexao.ConexaoDB do
+  begin
+    Protocol := 'mssql';
+    LibraryLocation := 'C:\Workspace\Andamento\ERP_SQLServer\ntwdblib.dll';
+    HostName := '.\SQL2014';
+    Port := 1433;
+    User := 'sa';
+    Password := '2014';
+    Database := 'vendas';
+    Connected := True;
+  end;
+end;
+
+
+
+  // Encerra o programa pelo menu
+procedure TdtmPrincipal.menuFecharClick(Sender: TObject);
+begin
+  Application.Terminate;
+end;
+
+end.

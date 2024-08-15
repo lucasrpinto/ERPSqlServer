@@ -1,0 +1,115 @@
+inherited frmCadCategorias: TfrmCadCategorias
+  Caption = 'Cadastro de Categorias'
+  ClientHeight = 511
+  ClientWidth = 799
+  ExplicitWidth = 805
+  ExplicitHeight = 540
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited pnlRodape: TPanel
+    Top = 462
+    Width = 799
+    ExplicitTop = 479
+    ExplicitWidth = 859
+    inherited btnNovo: TBitBtn
+      Left = 6
+      ExplicitLeft = 6
+    end
+    inherited btnAlterar: TBitBtn
+      Left = 85
+      ExplicitLeft = 85
+    end
+    inherited btnCancelar: TBitBtn
+      Left = 167
+      ExplicitLeft = 167
+    end
+    inherited btnGravar: TBitBtn
+      Left = 250
+      ExplicitLeft = 250
+    end
+    inherited btnExcluir: TBitBtn
+      Left = 332
+      ExplicitLeft = 332
+    end
+    inherited dbnNavigator: TDBNavigator
+      Left = 417
+      Hints.Strings = ()
+      ExplicitLeft = 417
+    end
+    inherited btnFechar: TBitBtn
+      Left = 715
+      ExplicitLeft = 775
+    end
+  end
+  inherited pgcPrincipal: TPageControl
+    Width = 799
+    Height = 462
+    inherited tabListagem: TTabSheet
+      ExplicitWidth = 791
+      ExplicitHeight = 434
+      inherited pnlListagemTopo: TPanel
+        Width = 791
+        inherited lblIndice: TLabel
+          Top = 2
+          ExplicitTop = 2
+        end
+        inherited mskPesquisar: TMaskEdit
+          Width = 451
+          ExplicitWidth = 451
+        end
+        inherited btnPesquisar: TBitBtn
+          Left = 457
+          Top = 23
+          Visible = False
+          ExplicitLeft = 457
+          ExplicitTop = 23
+        end
+      end
+      inherited grdListagem: TDBGrid
+        Width = 791
+        Height = 373
+        Columns = <
+          item
+            Expanded = False
+            FieldName = 'categoriaId'
+            Width = 106
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'descricao'
+            Width = 455
+            Visible = True
+          end>
+      end
+    end
+    inherited tabManutencao: TTabSheet
+      ExplicitWidth = 791
+      ExplicitHeight = 434
+    end
+  end
+  inherited qryListagem: TZQuery
+    Active = True
+    SQL.Strings = (
+      'SELECT categoriaId,'#11
+      '             descricao'
+      'FROM categorias')
+    Left = 628
+    Top = 24
+    object qryListagemcategoriaId: TIntegerField
+      DisplayLabel = 'C'#211'DIGO'
+      FieldName = 'categoriaId'
+      ReadOnly = True
+    end
+    object qryListagemdescricao: TWideStringField
+      DisplayLabel = 'DESCRI'#199#195'O'
+      FieldName = 'descricao'
+      Size = 30
+    end
+  end
+  inherited dtsListagem: TDataSource
+    DataSet = qryListagem
+    Left = 676
+    Top = 24
+  end
+end

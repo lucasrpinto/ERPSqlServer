@@ -1,0 +1,180 @@
+object frmTelaHeranca: TfrmTelaHeranca
+  Left = 0
+  Top = 0
+  BorderStyle = bsDialog
+  Caption = 'Informe Aqui o Titulo'
+  ClientHeight = 633
+  ClientWidth = 1075
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poScreenCenter
+  OnCloseQuery = FormCloseQuery
+  OnCreate = FormCreate
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+  object pnlRodape: TPanel
+    Left = 0
+    Top = 584
+    Width = 1075
+    Height = 49
+    Align = alBottom
+    Color = clAppWorkSpace
+    ParentBackground = False
+    TabOrder = 0
+    DesignSize = (
+      1075
+      49)
+    object btnNovo: TBitBtn
+      Left = 26
+      Top = 13
+      Width = 75
+      Height = 25
+      Caption = '&NOVO'
+      TabOrder = 0
+      OnClick = btnNovoClick
+    end
+    object btnAlterar: TBitBtn
+      Left = 107
+      Top = 13
+      Width = 78
+      Height = 25
+      Caption = '&ALTERAR'
+      TabOrder = 1
+      OnClick = btnAlterarClick
+    end
+    object btnCancelar: TBitBtn
+      Left = 191
+      Top = 13
+      Width = 78
+      Height = 25
+      Caption = '&CANCELAR'
+      TabOrder = 2
+      OnClick = btnCancelarClick
+    end
+    object btnGravar: TBitBtn
+      Left = 275
+      Top = 13
+      Width = 78
+      Height = 25
+      Caption = '&GRAVAR'
+      TabOrder = 3
+      OnClick = btnGravarClick
+    end
+    object btnExcluir: TBitBtn
+      Left = 359
+      Top = 13
+      Width = 78
+      Height = 25
+      Caption = '&EXCLUIR'
+      TabOrder = 4
+      OnClick = btnExcluirClick
+    end
+    object dbnNavigator: TDBNavigator
+      Left = 564
+      Top = 13
+      Width = 280
+      Height = 25
+      DataSource = dtsListagem
+      VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast]
+      TabOrder = 5
+    end
+    object btnFechar: TBitBtn
+      Left = 974
+      Top = 13
+      Width = 78
+      Height = 25
+      Anchors = [akTop, akRight]
+      Caption = '&FECHAR'
+      TabOrder = 6
+      OnClick = btnFecharClick
+    end
+  end
+  object pgcPrincipal: TPageControl
+    Left = 0
+    Top = 0
+    Width = 1075
+    Height = 584
+    ActivePage = tabListagem
+    Align = alClient
+    TabOrder = 1
+    object tabListagem: TTabSheet
+      Caption = 'Listagem'
+      object pnlListagemTopo: TPanel
+        Left = 0
+        Top = 0
+        Width = 1067
+        Height = 61
+        Align = alTop
+        TabOrder = 0
+        object lblIndice: TLabel
+          Left = 1
+          Top = 4
+          Width = 100
+          Height = 18
+          Caption = 'campoPesquisa'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -15
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+        end
+        object mskPesquisar: TMaskEdit
+          Left = 0
+          Top = 23
+          Width = 371
+          Height = 21
+          CharCase = ecUpperCase
+          TabOrder = 0
+          Text = ''
+          TextHint = 'DIGITE SUA PESQUISA...'
+          OnChange = mskPesquisarChange
+        end
+        object btnPesquisar: TBitBtn
+          Left = 368
+          Top = 21
+          Width = 121
+          Height = 26
+          Caption = '&PESQUISAR'
+          TabOrder = 1
+        end
+      end
+      object grdListagem: TDBGrid
+        Left = 0
+        Top = 61
+        Width = 1067
+        Height = 495
+        Align = alClient
+        DataSource = dtsListagem
+        Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+        TabOrder = 1
+        TitleFont.Charset = DEFAULT_CHARSET
+        TitleFont.Color = clWindowText
+        TitleFont.Height = -11
+        TitleFont.Name = 'Tahoma'
+        TitleFont.Style = []
+        OnTitleClick = grdListagemTitleClick
+      end
+    end
+    object tabManutencao: TTabSheet
+      Caption = 'Manuten'#231#227'o'
+      ImageIndex = 1
+    end
+  end
+  object qryListagem: TZQuery
+    Connection = dtmConexao.ConexaoDB
+    Params = <>
+    Left = 684
+    Top = 40
+  end
+  object dtsListagem: TDataSource
+    Left = 748
+    Top = 40
+  end
+end

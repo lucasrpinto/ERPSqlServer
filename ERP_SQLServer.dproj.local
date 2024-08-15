@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2024/07/29 20:14:03.000.939,=C:\Users\lucas\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>2024/08/06 21:34:48.000.812,=C:\Users\lucas\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>2024/08/06 21:36:24.000.371,C:\Workspace\Andamento\ERP_SQLServer\uPrincipal.dfm=C:\Users\lucas\Documents\Embarcadero\Studio\Projects\Unit2.dfm</Transaction>
+    <Transaction>2024/08/06 21:36:24.000.371,C:\Workspace\Andamento\ERP_SQLServer\uPrincipal.pas=C:\Users\lucas\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>2024/08/06 21:36:44.000.759,C:\Workspace\Andamento\ERP_SQLServer\ERP_SQLServer.dproj=C:\Users\lucas\Documents\Embarcadero\Studio\Projects\Project2.dproj</Transaction>
+    <Transaction>2024/08/06 21:47:24.000.722,=C:\Workspace\Andamento\ERP_SQLServer\Unit1.pas</Transaction>
+    <Transaction>2024/08/06 21:48:17.000.745,C:\Workspace\Andamento\ERP_SQLServer\datamodule\uDTMConexao.pas=C:\Workspace\Andamento\ERP_SQLServer\Unit1.pas</Transaction>
+    <Transaction>2024/08/06 21:48:17.000.745,C:\Workspace\Andamento\ERP_SQLServer\datamodule\uDTMConexao.dfm=C:\Workspace\Andamento\ERP_SQLServer\Unit1.dfm</Transaction>
+    <Transaction>2024/08/08 16:52:23.000.351,=C:\Workspace\Andamento\ERP_SQLServer\Unit1.pas</Transaction>
+    <Transaction>2024/08/08 16:53:07.000.719,C:\Workspace\Andamento\ERP_SQLServer\Heranca\uTelaHeranca.dfm=C:\Workspace\Andamento\ERP_SQLServer\Unit1.dfm</Transaction>
+    <Transaction>2024/08/08 16:53:07.000.719,C:\Workspace\Andamento\ERP_SQLServer\Heranca\uTelaHeranca.pas=C:\Workspace\Andamento\ERP_SQLServer\Unit1.pas</Transaction>
+    <Transaction>2024/08/09 09:59:35.000.836,=C:\Workspace\Andamento\ERP_SQLServer\Unit1.pas</Transaction>
+    <Transaction>2024/08/09 10:00:20.000.849,C:\Workspace\Andamento\ERP_SQLServer\Unit1.pas=C:\Workspace\Andamento\ERP_SQLServer\Cadastros\uCadCategorias.pas</Transaction>
+    <Transaction>2024/08/09 10:00:20.000.849,C:\Workspace\Andamento\ERP_SQLServer\Unit1.dfm=C:\Workspace\Andamento\ERP_SQLServer\Cadastros\uCadCategorias.dfm</Transaction>
+    <Transaction>2024/08/09 11:19:14.000.102,=C:\Workspace\Andamento\ERP_SQLServer\terceiros\Enter.pas</Transaction>
+    <Transaction>2024/08/12 11:57:59.000.581,=C:\Workspace\Andamento\ERP_SQLServer\Unit1.pas</Transaction>
+    <Transaction>2024/08/12 11:58:17.000.344,C:\Workspace\Andamento\ERP_SQLServer\Heranca\uEnum.pas=C:\Workspace\Andamento\ERP_SQLServer\Unit1.pas</Transaction>
+    <Transaction>2024/08/12 16:25:52.000.484,=C:\Workspace\Andamento\ERP_SQLServer\Unit1.pas</Transaction>
+    <Transaction>2024/08/12 16:26:17.000.455,C:\Workspace\Andamento\ERP_SQLServer\Unit1.pas=C:\Workspace\Andamento\ERP_SQLServer\Heranca\uEnum2.pas</Transaction>
+  </Transactions>
+</BorlandProject>

@@ -1,0 +1,46 @@
+unit uDTMConexao;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, ZAbstractConnection, ZConnection;
+
+type
+  TdtmConexao = class(TDataModule)
+    ConexaoDB: TZConnection;
+    procedure DataModuleCreate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  dtmConexao: TdtmConexao;
+
+implementation
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+{$R *.dfm}
+
+procedure TdtmConexao.DataModuleCreate(Sender: TObject);
+begin
+  dtmConexao := TdtmConexao.Create(Self);
+  dtmConexao.ConexaoDB.SQLHourGlass := True;
+
+  // Configuração do Banco de Dados
+  with dtmConexao.ConexaoDB do
+  begin
+    Protocol := 'mssql';
+    LibraryLocation := 'C:\Workspace\Andamento\ERP_SQLServer\ntwdblib.dll';
+    HostName := '.\SQL2014';
+    Port := 1433;
+    User := 'sa';
+    Password := '2014';
+    Database := 'vendas';
+    Connected := True;
+  end;
+end;
+
+end.

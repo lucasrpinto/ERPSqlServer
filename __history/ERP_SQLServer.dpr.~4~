@@ -1,0 +1,15 @@
+program ERP_SQLServer;
+
+uses
+  Vcl.Forms,
+  uPrincipal in 'uPrincipal.pas' {dtmPrincipal},
+  uDTMConexao in 'datamodule\uDTMConexao.pas' {dtmConexao: TDataModule};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TdtmPrincipal, dtmPrincipal);
+  Application.Run;
+end.

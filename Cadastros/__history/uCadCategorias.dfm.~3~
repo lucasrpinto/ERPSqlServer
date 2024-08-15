@@ -1,0 +1,96 @@
+inherited frmCadCategorias: TfrmCadCategorias
+  Caption = 'Cadastro de Categorias'
+  ClientHeight = 528
+  ClientWidth = 859
+  ExplicitWidth = 865
+  ExplicitHeight = 557
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited pnlRodape: TPanel
+    Top = 479
+    Width = 859
+    ExplicitLeft = -8
+    ExplicitTop = 559
+    ExplicitWidth = 934
+    inherited dbnNavigator: TDBNavigator
+      Left = 440
+      Hints.Strings = ()
+      ExplicitLeft = 440
+    end
+    inherited btnFechar: TBitBtn
+      Left = 758
+      ExplicitLeft = 974
+    end
+  end
+  inherited pgcPrincipal: TPageControl
+    Width = 859
+    Height = 479
+    ExplicitWidth = 1075
+    ExplicitHeight = 584
+    inherited tabListagem: TTabSheet
+      ExplicitWidth = 851
+      ExplicitHeight = 451
+      inherited pnlListagemTopo: TPanel
+        Width = 851
+        ExplicitWidth = 1067
+        inherited mskPesquisar: TMaskEdit
+          Width = 451
+          Height = 21
+          ExplicitWidth = 451
+          ExplicitHeight = 21
+        end
+        inherited btnPesquisar: TBitBtn
+          Left = 457
+          Top = 23
+          ExplicitLeft = 457
+          ExplicitTop = 23
+        end
+      end
+      inherited grdListagem: TDBGrid
+        Width = 851
+        Height = 390
+        Columns = <
+          item
+            Expanded = False
+            FieldName = 'categoriaId'
+            Width = 106
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'descricao'
+            Width = 455
+            Visible = True
+          end>
+      end
+    end
+    inherited tabManutencao: TTabSheet
+      ExplicitWidth = 851
+      ExplicitHeight = 451
+    end
+  end
+  inherited qryListagem: TZQuery
+    Active = True
+    SQL.Strings = (
+      'SELECT categoriaId,'#11
+      '             descricao'
+      'FROM categorias')
+    Left = 628
+    Top = 24
+    object qryListagemcategoriaId: TIntegerField
+      DisplayLabel = 'C'#211'DIGO'
+      FieldName = 'categoriaId'
+      ReadOnly = True
+    end
+    object qryListagemdescricao: TWideStringField
+      DisplayLabel = 'DESCRI'#199#195'O'
+      FieldName = 'descricao'
+      Size = 30
+    end
+  end
+  inherited dtsListagem: TDataSource
+    DataSet = qryListagem
+    Left = 676
+    Top = 24
+  end
+end

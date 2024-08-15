@@ -1,0 +1,18 @@
+program ERP_SQLServer;
+
+uses
+  Vcl.Forms,
+  uDTMConexao in 'datamodule\uDTMConexao.pas' {dtmConexao: TDataModule},
+  uTelaHeranca in 'Heranca\uTelaHeranca.pas' {frmTelaHeranca},
+  uCadCategorias in 'Cadastros\uCadCategorias.pas' {frmCadCategorias},
+  uPrincipal in 'uPrincipal.pas' {dtmPrincipal},
+  Enter in 'terceiros\Enter.pas';
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TdtmPrincipal, dtmPrincipal);
+  Application.Run;
+end.
