@@ -33,7 +33,6 @@ type
     procedure btnGravarClick(Sender: TObject);
     procedure btnExcluirClick(Sender: TObject);
     procedure btnAlterarClick(Sender: TObject);
-    procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure FormShow(Sender: TObject);
     procedure grdListagemTitleClick(Column: TColumn);
     procedure mskPesquisarChange(Sender: TObject);
@@ -95,17 +94,6 @@ begin
   aLabel.Caption := RetornaCampoTraduzido(Campo);
 end;
 
-procedure TfrmTelaHeranca.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
-begin
-  if FEmModoEdicao then
-  begin
-    if MessageDlg('Alteração ainda não salva, deseja realmente sair?', mtConfirmation, [mbYes, mbNo], 0) = mrNo then
-    begin
-      CanClose := False; // Impede o fechamento do formulário
-    end;
-  end;
-  qryListagem.Close;
-end;
 
 function TfrmTelaHeranca.ExisteCampoObrigatorio : Boolean;
 var i : integer;
@@ -119,6 +107,14 @@ begin
 
           if (TLabeledEdit(Components[i]).Tag = 1) and (TLabeledEdit(Components[i]).Text = EmptyStr) then
             begin
+
+              MessageDlg('Preencha o campo de ' + TLabeledEdit(Components[i]).EditLabel.Caption,
+                          mtInformation, [mbOK], 0);
+
+              TLabeledEdit(Components[i]).SetFocus;
+              Result := True;
+
+              Break;
 
             end;
 
@@ -202,6 +198,10 @@ end;
 procedure TfrmTelaHeranca.btnGravarClick(Sender: TObject);
 begin
   FEmModoEdicao := False;
+
+  if (ExisteCampoObrigatorio) then
+    exit;
+
   try
     if Gravar(EstadoDoCadastro) then
       begin

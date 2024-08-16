@@ -9,8 +9,8 @@ inherited frmCadCategorias: TfrmCadCategorias
   inherited pnlRodape: TPanel
     Top = 315
     Width = 901
-    ExplicitTop = 487
-    ExplicitWidth = 888
+    ExplicitTop = 315
+    ExplicitWidth = 901
     inherited btnNovo: TBitBtn
       Left = 6
       Top = 15
@@ -56,21 +56,21 @@ inherited frmCadCategorias: TfrmCadCategorias
     end
     inherited btnFechar: TBitBtn
       Left = 802
-      ExplicitLeft = 789
+      ExplicitLeft = 802
     end
   end
   inherited pgcPrincipal: TPageControl
     Width = 901
     Height = 315
     ActivePage = tabManutencao
-    ExplicitWidth = 888
-    ExplicitHeight = 487
+    ExplicitWidth = 901
+    ExplicitHeight = 315
     inherited tabListagem: TTabSheet
       ExplicitWidth = 893
       ExplicitHeight = 287
       inherited pnlListagemTopo: TPanel
         Width = 893
-        ExplicitWidth = 880
+        ExplicitWidth = 893
         inherited lblIndice: TLabel
           Top = 2
           ExplicitTop = 2
@@ -121,6 +121,7 @@ inherited frmCadCategorias: TfrmCadCategorias
         TabOrder = 0
       end
       object edtDescricao: TLabeledEdit
+        Tag = 1
         Left = 0
         Top = 96
         Width = 513

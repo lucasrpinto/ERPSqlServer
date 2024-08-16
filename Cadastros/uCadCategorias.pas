@@ -33,17 +33,12 @@ implementation
 
 procedure TfrmCadCategorias.btnGravarClick(Sender: TObject);
 begin
-  if (edtDescricao.Text = EmptyStr) then
+  {if (edtDescricao.Text = EmptyStr) then
     begin
       ShowMessage('Preencha o campo de descrição.');
       edtDescricao.SetFocus;
       Exit;
-    end
-  else
-    begin
-      edtDescricao.Color := clWindow;
-      edtDescricao.Font.Color := clWindowText;
-    end;
+    end;}
 
   inherited;
 
