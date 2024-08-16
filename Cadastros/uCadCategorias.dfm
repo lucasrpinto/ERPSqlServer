@@ -1,14 +1,14 @@
 inherited frmCadCategorias: TfrmCadCategorias
   Caption = 'Cadastro de Categorias'
-  ClientHeight = 536
-  ClientWidth = 888
-  ExplicitWidth = 894
-  ExplicitHeight = 565
+  ClientHeight = 364
+  ClientWidth = 901
+  ExplicitWidth = 907
+  ExplicitHeight = 393
   PixelsPerInch = 96
   TextHeight = 13
   inherited pnlRodape: TPanel
-    Top = 487
-    Width = 888
+    Top = 315
+    Width = 901
     ExplicitTop = 487
     ExplicitWidth = 888
     inherited btnNovo: TBitBtn
@@ -55,20 +55,21 @@ inherited frmCadCategorias: TfrmCadCategorias
       ExplicitTop = 14
     end
     inherited btnFechar: TBitBtn
-      Left = 789
+      Left = 802
       ExplicitLeft = 789
     end
   end
   inherited pgcPrincipal: TPageControl
-    Width = 888
-    Height = 487
+    Width = 901
+    Height = 315
+    ActivePage = tabManutencao
     ExplicitWidth = 888
     ExplicitHeight = 487
     inherited tabListagem: TTabSheet
-      ExplicitWidth = 880
-      ExplicitHeight = 459
+      ExplicitWidth = 893
+      ExplicitHeight = 287
       inherited pnlListagemTopo: TPanel
-        Width = 880
+        Width = 893
         ExplicitWidth = 880
         inherited lblIndice: TLabel
           Top = 2
@@ -87,8 +88,8 @@ inherited frmCadCategorias: TfrmCadCategorias
         end
       end
       inherited grdListagem: TDBGrid
-        Width = 880
-        Height = 398
+        Width = 893
+        Height = 226
         Columns = <
           item
             Expanded = False
@@ -105,8 +106,31 @@ inherited frmCadCategorias: TfrmCadCategorias
       end
     end
     inherited tabManutencao: TTabSheet
-      ExplicitWidth = 880
-      ExplicitHeight = 459
+      ExplicitWidth = 893
+      ExplicitHeight = 287
+      object edtCategoriaId: TLabeledEdit
+        Left = 0
+        Top = 40
+        Width = 121
+        Height = 21
+        EditLabel.Width = 33
+        EditLabel.Height = 13
+        EditLabel.Caption = 'C'#243'digo'
+        MaxLength = 10
+        NumbersOnly = True
+        TabOrder = 0
+      end
+      object edtDescricao: TLabeledEdit
+        Left = 0
+        Top = 96
+        Width = 513
+        Height = 21
+        EditLabel.Width = 46
+        EditLabel.Height = 13
+        EditLabel.Caption = 'Descri'#231#227'o'
+        MaxLength = 30
+        TabOrder = 1
+      end
     end
   end
   inherited qryListagem: TZQuery

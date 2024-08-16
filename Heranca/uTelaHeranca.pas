@@ -45,6 +45,7 @@ type
     procedure ControlarIndiceTab(pgcPrincipal: TPageControl; i: Integer);
     function RetornaCampoTraduzido(Campo: String): string;
     procedure ExiberLabelIndice(Campo: String; aLabel: TLabel);
+    function ExisteCampoObrigatorio: Boolean;
   public
     { Public declarations }
     IndiceAtual : String;
@@ -105,6 +106,29 @@ begin
   end;
   qryListagem.Close;
 end;
+
+function TfrmTelaHeranca.ExisteCampoObrigatorio : Boolean;
+var i : integer;
+begin
+
+  Result := False;
+  for i := 0 to ComponentCount -1 do
+    begin
+      if (Components[i] is TLabeledEdit) then
+        begin
+
+          if (TLabeledEdit(Components[i]).Tag = 1) and (TLabeledEdit(Components[i]).Text = EmptyStr) then
+            begin
+
+            end;
+
+
+        end;
+    end;
+
+
+end;
+
 {$endregion}
 
 {$region 'MÉTODOS VIRTUAIS'}
@@ -210,13 +234,19 @@ procedure TfrmTelaHeranca.FormCreate(Sender: TObject);
 begin
   if not dtmConexao.ConexaoDB.Connected then
     dtmConexao.ConexaoDB.Connect;
+
   qryListagem.Connection := dtmConexao.ConexaoDB;
   dtsListagem.DataSet := qryListagem;
   grdListagem.DataSource := dtsListagem;
   dbnNavigator.DataSource := dtsListagem;
+
   ControlarBotoes(btnNovo, btnFechar, btnAlterar, btnCancelar, btnGravar, btnExcluir, dbnNavigator, pgcPrincipal, True);
   grdListagem.Options := [dgTitles,dgIndicator,dgColumnResize,dgColLines,dgRowLines,dgTabs,dgRowSelect,dgAlwaysShowSelection,dgCancelOnExit,dgTitleClick,dgTitleHotTrack];
+
+
 end;
+
+
 procedure TfrmTelaHeranca.FormShow(Sender: TObject);
 begin
   if (qryListagem.SQL.Text <> EmptyStr) then
@@ -225,6 +255,7 @@ begin
       ExiberLabelIndice(IndiceAtual, lblIndice);
       qryListagem.Open;
     end;
+    ControlarIndiceTab(pgcPrincipal, 0);
 end;
 
 

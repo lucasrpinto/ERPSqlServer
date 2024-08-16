@@ -1,0 +1,45 @@
+# Arquivos de build
+*.dcu
+*.dcp
+*.dcr
+*.o
+*.obj
+*.ilk
+*.pdb
+*.res
+*.rsm
+*.dsk
+*.dpl
+*.dsk
+*.dproj
+*.groupproj
+
+# Arquivos temporários
+*.~*
+*.ncb
+*.suo
+*.user
+*.sdf
+*.aps
+*.~pl
+*.tps
+
+# Arquivos de IDE específicos
+*.local
+*.gdb
+*.bak
+*.tmp
+*.swp
+*.suo
+*.cache
+*.log
+*.bpl
+*.bdsproj
+*.rsm
+*.rsm
+
+# Pastas
+_ide
+_build
+Debug
+Release

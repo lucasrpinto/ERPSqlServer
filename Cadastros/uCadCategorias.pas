@@ -12,7 +12,11 @@ type
   TfrmCadCategorias = class(TfrmTelaHeranca)
     qryListagemcategoriaId: TIntegerField;
     qryListagemdescricao: TWideStringField;
+    edtCategoriaId: TLabeledEdit;
+    edtDescricao: TLabeledEdit;
     procedure FormCreate(Sender: TObject);
+    procedure btnGravarClick(Sender: TObject);
+    procedure btnNovoClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -26,6 +30,32 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TfrmCadCategorias.btnGravarClick(Sender: TObject);
+begin
+  if (edtDescricao.Text = EmptyStr) then
+    begin
+      ShowMessage('Preencha o campo de descrição.');
+      edtDescricao.SetFocus;
+      Exit;
+    end
+  else
+    begin
+      edtDescricao.Color := clWindow;
+      edtDescricao.Font.Color := clWindowText;
+    end;
+
+  inherited;
+
+end;
+
+procedure TfrmCadCategorias.btnNovoClick(Sender: TObject);
+begin
+    edtCategoriaId.ReadOnly := True;
+
+  inherited;
+
+end;
 
 constructor TfrmCadCategorias.Create(AOwner: TComponent);
 begin
