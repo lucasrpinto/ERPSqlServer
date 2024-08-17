@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uTelaHeranca, Data.DB,
   ZAbstractRODataset, ZAbstractDataset, ZDataset, Vcl.Grids, Vcl.DBGrids,
-  Vcl.StdCtrls, Vcl.Mask, Vcl.ComCtrls, Vcl.DBCtrls, Vcl.Buttons, Vcl.ExtCtrls;
+  Vcl.StdCtrls, Vcl.Mask, Vcl.ComCtrls, Vcl.DBCtrls, Vcl.Buttons, Vcl.ExtCtrls, cCadCategoria;
 
 type
   TfrmCadCategorias = class(TfrmTelaHeranca)
@@ -16,9 +16,10 @@ type
     edtDescricao: TLabeledEdit;
     procedure FormCreate(Sender: TObject);
     procedure btnGravarClick(Sender: TObject);
-    procedure btnNovoClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
+    oCategoria : TCategoria;
   public
      constructor Create(AOwner: TComponent); override;
      destructor Destroy; override;
@@ -31,22 +32,13 @@ implementation
 
 {$R *.dfm}
 
+
 procedure TfrmCadCategorias.btnGravarClick(Sender: TObject);
 begin
-  {if (edtDescricao.Text = EmptyStr) then
-    begin
-      ShowMessage('Preencha o campo de descrição.');
-      edtDescricao.SetFocus;
-      Exit;
-    end;}
+  oCategoria.codigo := 100;
+  oCategoria.descricao := 'TESTE';
 
-  inherited;
-
-end;
-
-procedure TfrmCadCategorias.btnNovoClick(Sender: TObject);
-begin
-    edtCategoriaId.ReadOnly := True;
+  ShowMessage(oCategoria.descricao);
 
   inherited;
 
@@ -64,11 +56,19 @@ begin
   inherited Destroy;
 end;
 
+procedure TfrmCadCategorias.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  inherited;
+  if Assigned(oCategoria) then
+    FreeAndNil(oCategoria)
+end;
+
 procedure TfrmCadCategorias.FormCreate(Sender: TObject);
 begin
 
   inherited;
-
+  oCategoria := TCategoria.Create;
   IndiceAtual := 'categoriaId';
 end;
 

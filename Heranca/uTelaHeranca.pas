@@ -36,6 +36,7 @@ type
     procedure FormShow(Sender: TObject);
     procedure grdListagemTitleClick(Column: TColumn);
     procedure mskPesquisarChange(Sender: TObject);
+    procedure grdListagemDblClick(Sender: TObject);
   private
     { Private declarations }
     EstadoDoCadastro: TEstadoDoCadastro;
@@ -45,6 +46,8 @@ type
     function RetornaCampoTraduzido(Campo: String): string;
     procedure ExiberLabelIndice(Campo: String; aLabel: TLabel);
     function ExisteCampoObrigatorio: Boolean;
+    procedure DesabilitarEditPK;
+    procedure LimparEdit;
   public
     { Public declarations }
     IndiceAtual : String;
@@ -56,6 +59,13 @@ var
   FEmModoEdicao: Boolean;
 implementation
 {$R *.dfm}
+
+{$region 'OBSERVAÇÕES}
+
+  //TAG: 1 - Chave Primária - PK
+  //TAG: 2 - Campos Obrigatórios
+
+{$endregion}
 
 
 {$region 'FUNÇÕES E PROCEDURES'}
@@ -105,7 +115,7 @@ begin
       if (Components[i] is TLabeledEdit) then
         begin
 
-          if (TLabeledEdit(Components[i]).Tag = 1) and (TLabeledEdit(Components[i]).Text = EmptyStr) then
+          if (TLabeledEdit(Components[i]).Tag = 2) and (TLabeledEdit(Components[i]).Text = EmptyStr) then
             begin
 
               MessageDlg('Preencha o campo de ' + TLabeledEdit(Components[i]).EditLabel.Caption,
@@ -117,12 +127,40 @@ begin
               Break;
 
             end;
-
-
         end;
     end;
+end;
 
 
+procedure TfrmTelaHeranca.DesabilitarEditPK;
+var i : integer;
+begin
+
+  for i := 0 to ComponentCount -1 do
+    begin
+      if (Components[i] is TLabeledEdit) then
+        begin
+
+          if (TLabeledEdit(Components[i]).Tag = 1) then
+            begin
+              TLabeledEdit(Components[i]).ReadOnly := True;
+              break;
+            end;
+        end;
+    end;
+end;
+
+procedure TfrmTelaHeranca.LimparEdit;
+var i : integer;
+begin
+
+  for i := 0 to ComponentCount -1 do
+    begin
+      if (Components[i] is TLabeledEdit) then
+          TLabeledEdit(Components[i]).Text := EmptyStr
+      else if (Components[i] is TLabeledEdit) then
+          TEdit(Components[i]).Text := '';
+    end;
 end;
 
 {$endregion}
@@ -157,6 +195,7 @@ begin
   ControlarBotoes(btnNovo, btnFechar, btnAlterar, btnCancelar, btnGravar, btnExcluir, dbnNavigator, pgcPrincipal, False);
   FEmModoEdicao := True;
   EstadoDoCadastro := ecInserir;
+  LimparEdit;
 end;
 
 
@@ -174,18 +213,26 @@ begin
   ControlarBotoes(btnNovo, btnFechar, btnAlterar, btnCancelar, btnGravar, btnExcluir, dbnNavigator, pgcPrincipal, True);
   ControlarIndiceTab(pgcPrincipal, 0);
   EstadoDoCadastro := ecNenhum;
+  LimparEdit;
 end;
 
 
 procedure TfrmTelaHeranca.btnExcluirClick(Sender: TObject);
 begin
-  if Excluir then
-    begin
-      ControlarBotoes(btnNovo, btnFechar, btnAlterar, btnCancelar, btnGravar, btnExcluir, dbnNavigator, pgcPrincipal, True);
-      ControlarIndiceTab(pgcPrincipal, 0);
-      EstadoDoCadastro := ecNenhum;
-    end;
-
+  Try
+    if (Excluir) then
+      begin
+        ControlarBotoes(btnNovo, btnFechar, btnAlterar, btnCancelar, btnGravar, btnExcluir, dbnNavigator, pgcPrincipal, True);
+        ControlarIndiceTab(pgcPrincipal, 0);
+        LimparEdit;
+      end
+    else
+      begin
+        MessageDlg('Erro na exclusão', TMsgDlgType.mtError, [mbOk], 0);
+      end;
+  Finally;
+    EstadoDoCadastro := ecNenhum;
+  end;
 end;
 
 
@@ -207,12 +254,23 @@ begin
       begin
         ControlarBotoes(btnNovo, btnFechar, btnAlterar, btnCancelar, btnGravar, btnExcluir, dbnNavigator, pgcPrincipal, True);
         ControlarIndiceTab(pgcPrincipal, 0);
-      end;
+        EstadoDoCadastro := ecNenhum;
+        LimparEdit;
+      end
+      else
+        begin
+          MessageDlg('Erro na gravação', TMsgDlgType.mtError, [mbOk], 0);
+        end;
   finally
-    EstadoDoCadastro := ecNenhum;
+
   end;
 end;
 
+
+procedure TfrmTelaHeranca.grdListagemDblClick(Sender: TObject);
+begin
+  btnAlterar.Click;
+end;
 
 procedure TfrmTelaHeranca.grdListagemTitleClick(Column: TColumn);
 begin
@@ -227,6 +285,8 @@ procedure TfrmTelaHeranca.mskPesquisarChange(Sender: TObject);
 begin
   qryListagem.Locate(IndiceAtual, TMaskEdit(Sender).Text, [loPartialKey]);
 end;
+
+
 {$endregion}
 
 {$region 'FormCreate e FormShow'}
@@ -256,6 +316,7 @@ begin
       qryListagem.Open;
     end;
     ControlarIndiceTab(pgcPrincipal, 0);
+    DesabilitarEditPK;
 end;
 
 

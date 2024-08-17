@@ -1,16 +1,17 @@
 inherited frmCadCategorias: TfrmCadCategorias
   Caption = 'Cadastro de Categorias'
   ClientHeight = 364
-  ClientWidth = 901
-  ExplicitWidth = 907
+  ClientWidth = 790
+  OnClose = FormClose
+  ExplicitWidth = 796
   ExplicitHeight = 393
   PixelsPerInch = 96
   TextHeight = 13
   inherited pnlRodape: TPanel
     Top = 315
-    Width = 901
+    Width = 790
     ExplicitTop = 315
-    ExplicitWidth = 901
+    ExplicitWidth = 790
     inherited btnNovo: TBitBtn
       Left = 6
       Top = 15
@@ -18,59 +19,60 @@ inherited frmCadCategorias: TfrmCadCategorias
       ExplicitTop = 15
     end
     inherited btnAlterar: TBitBtn
-      Left = 102
+      Left = 99
       Top = 15
       Width = 93
-      ExplicitLeft = 102
+      ExplicitLeft = 99
       ExplicitTop = 15
       ExplicitWidth = 93
     end
     inherited btnCancelar: TBitBtn
-      Left = 203
+      Left = 196
       Top = 15
       Width = 92
-      ExplicitLeft = 203
+      ExplicitLeft = 196
       ExplicitTop = 15
       ExplicitWidth = 92
     end
     inherited btnGravar: TBitBtn
-      Left = 301
+      Left = 291
       Top = 15
       Width = 100
-      ExplicitLeft = 301
+      ExplicitLeft = 291
       ExplicitTop = 15
       ExplicitWidth = 100
     end
     inherited btnExcluir: TBitBtn
-      Left = 407
+      Left = 395
       Top = 15
-      ExplicitLeft = 407
+      ExplicitLeft = 395
       ExplicitTop = 15
     end
     inherited dbnNavigator: TDBNavigator
-      Left = 503
+      Left = 489
       Top = 14
+      Width = 184
       Hints.Strings = ()
-      ExplicitLeft = 503
+      ExplicitLeft = 489
       ExplicitTop = 14
+      ExplicitWidth = 184
     end
     inherited btnFechar: TBitBtn
-      Left = 802
-      ExplicitLeft = 802
+      Left = 689
+      ExplicitLeft = 689
     end
   end
   inherited pgcPrincipal: TPageControl
-    Width = 901
+    Width = 790
     Height = 315
-    ActivePage = tabManutencao
-    ExplicitWidth = 901
+    ExplicitWidth = 790
     ExplicitHeight = 315
     inherited tabListagem: TTabSheet
-      ExplicitWidth = 893
+      ExplicitWidth = 782
       ExplicitHeight = 287
       inherited pnlListagemTopo: TPanel
-        Width = 893
-        ExplicitWidth = 893
+        Width = 782
+        ExplicitWidth = 782
         inherited lblIndice: TLabel
           Top = 2
           ExplicitTop = 2
@@ -88,7 +90,7 @@ inherited frmCadCategorias: TfrmCadCategorias
         end
       end
       inherited grdListagem: TDBGrid
-        Width = 893
+        Width = 782
         Height = 226
         Columns = <
           item
@@ -106,29 +108,48 @@ inherited frmCadCategorias: TfrmCadCategorias
       end
     end
     inherited tabManutencao: TTabSheet
-      ExplicitWidth = 893
+      ExplicitWidth = 782
       ExplicitHeight = 287
       object edtCategoriaId: TLabeledEdit
+        Tag = 1
         Left = 0
         Top = 40
         Width = 121
         Height = 21
-        EditLabel.Width = 33
-        EditLabel.Height = 13
+        EditLabel.Width = 43
+        EditLabel.Height = 18
         EditLabel.Caption = 'C'#243'digo'
+        EditLabel.Font.Charset = DEFAULT_CHARSET
+        EditLabel.Font.Color = clWindowText
+        EditLabel.Font.Height = -15
+        EditLabel.Font.Name = 'Tahoma'
+        EditLabel.Font.Style = []
+        EditLabel.ParentFont = False
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
         MaxLength = 10
         NumbersOnly = True
+        ParentFont = False
         TabOrder = 0
       end
       object edtDescricao: TLabeledEdit
-        Tag = 1
-        Left = 0
-        Top = 96
+        Tag = 2
+        Left = 3
+        Top = 112
         Width = 513
         Height = 21
-        EditLabel.Width = 46
-        EditLabel.Height = 13
+        EditLabel.Width = 62
+        EditLabel.Height = 18
         EditLabel.Caption = 'Descri'#231#227'o'
+        EditLabel.Font.Charset = DEFAULT_CHARSET
+        EditLabel.Font.Color = clWindowText
+        EditLabel.Font.Height = -15
+        EditLabel.Font.Name = 'Tahoma'
+        EditLabel.Font.Style = []
+        EditLabel.ParentFont = False
         MaxLength = 30
         TabOrder = 1
       end
