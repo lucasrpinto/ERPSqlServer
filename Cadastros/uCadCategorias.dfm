@@ -2,7 +2,6 @@ inherited frmCadCategorias: TfrmCadCategorias
   Caption = 'Cadastro de Categorias'
   ClientHeight = 364
   ClientWidth = 790
-  OnClose = FormClose
   ExplicitWidth = 796
   ExplicitHeight = 393
   PixelsPerInch = 96
