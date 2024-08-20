@@ -52,7 +52,7 @@ type
     EstadoDoCadastro: TEstadoDoCadastro;
     IndiceAtual : String;
     function Excluir : Boolean; virtual;
-    function Gravar(EstadoDOCadastro:TEstadoDoCadastro) : Boolean; virtual;
+    function Gravar(EstadoDoCadastro:TEstadoDoCadastro) : Boolean; virtual;
   end;
 var
   frmTelaHeranca: TfrmTelaHeranca;
@@ -175,15 +175,15 @@ begin
 end;
 
 
-function TfrmTelaHeranca.Gravar(EstadoDOCadastro: TEstadoDoCadastro): Boolean;
+function TfrmTelaHeranca.Gravar(EstadoDoCadastro: TEstadoDoCadastro): Boolean;
 begin
 
-  if (EstadoDoCadastro = ecInserir) then
-    ShowMessage('SALVO COM SUCESSO')
-  else if (EstadoDoCadastro = ecAlterar) then
-    ShowMessage('ALTERADO COM SUCESSO');
-
-  Result := True;
+  if (EstadoDoCadastro=ecInserir) then
+       showmessage('Inserir')
+   else if (EstadoDoCadastro=ecAlterar) then
+       showmessage('Alterado')
+   else
+      showmessage('Nada aconteceu');
 
 end;
 {$endregion}
@@ -225,6 +225,9 @@ begin
         ControlarBotoes(btnNovo, btnFechar, btnAlterar, btnCancelar, btnGravar, btnExcluir, dbnNavigator, pgcPrincipal, True);
         ControlarIndiceTab(pgcPrincipal, 0);
         LimparEdit;
+        MessageDlg('Excluido com sucesso!', TMsgDlgType.mtInformation, [mbOk], 0);
+
+        qryListagem.Refresh;
       end
     else
       begin
@@ -247,7 +250,7 @@ begin
   FEmModoEdicao := False;
 
   if (ExisteCampoObrigatorio) then
-    exit;
+    abort;
 
   try
     if Gravar(EstadoDoCadastro) then
@@ -256,10 +259,14 @@ begin
         ControlarIndiceTab(pgcPrincipal, 0);
         EstadoDoCadastro := ecNenhum;
         LimparEdit;
+
+        MessageDlg('Salvo com sucesso!', TMsgDlgType.mtInformation, [TMsgDlgBtn.mbOK], 0);
+
+        qryListagem.Refresh;
       end
       else
         begin
-          MessageDlg('Erro na gravação', TMsgDlgType.mtError, [mbOk], 0);
+          MessageDlg('Erro ao salvar. Tente novamente.', TMsgDlgType.mtError, [mbOk], 0);
         end;
   finally
 

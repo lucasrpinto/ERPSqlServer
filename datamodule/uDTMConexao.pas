@@ -2,7 +2,8 @@ unit uDTMConexao;
 
 interface
 uses
-  System.SysUtils, System.Classes, ZAbstractConnection, ZConnection;
+  System.SysUtils, System.Classes, ZAbstractConnection, ZConnection, Vcl.forms,
+  Data.DB, ZAbstractRODataset, ZAbstractDataset, ZDataset;
 type
   TdtmConexao = class(TDataModule)
     ConexaoDB: TZConnection;

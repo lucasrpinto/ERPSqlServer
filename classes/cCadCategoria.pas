@@ -7,7 +7,11 @@ uses System.Classes,
      Vcl.ExtCtrls,
      Vcl.Dialogs,
      ZAbstractConnection,
-     ZConnection; //Lista de Units
+     ZConnection,
+     ZAbstractRODataset,
+     ZAbstractDataset,
+     ZDataset,
+     System.SysUtils;//Lista de uses
 
 type
   TCategoria = class //Declaração do tipo da classe
@@ -25,9 +29,9 @@ type
     constructor Create (aConexao : TZConnection); //Constructor da Classe
     destructor Destroy; override; //Destroi a Classe usar o Override por causa de sobrescrever
 
-    function Gravar : Boolean;
+    function Inserir : Boolean;
     function Atualizar : Boolean;
-    function Apagar : Boolean;
+    function Excluir : Boolean;
     function Seleciona (id : Integer) : Boolean;
 
   published
@@ -44,9 +48,10 @@ implementation
 
 
 {$region 'Constructor and Desctructor'}
-constructor TCategoria.Create(aConexao : TZConnection);
+constructor TCategoria.Create(aConexao: TZConnection);
 begin
-  ConexaoDB := aConexao;
+  inherited Create;  // Chama o construtor da classe pai, se necessário
+  ConexaoDB := aConexao;  // Atribui a conexão passada como argumento
 end;
 
 destructor TCategoria.Destroy;
@@ -59,27 +64,116 @@ end;
 
 
 {$region 'CRUD'}
-function TCategoria.Apagar: Boolean;
+function TCategoria.Excluir: Boolean;
+var Qry : TZQuery;
 begin
-  ShowMessage('Apagado');
-  Result := True;
+  if MessageDlg('Apagar o Registro: '+#13+#13+
+                 'Código: '+IntToStr(F_categoriaId)+#13+
+                 'Descrição: '+F_descricao, TMsgDlgType.mtConfirmation, [mbYes, mbNo],0) = mrNo then
+    begin
+      Result := False;
+      abort;
+    end;
+
+    Try
+      Result := true;
+      Qry := TZQuery.Create(nil);
+      Qry.Connection := ConexaoDB;
+      Qry.SQL.Clear;
+      Qry.SQL.Add('DELETE FROM categorias '+
+                  ' WHERE categoriaId =:categoriaId ');
+      Qry.ParamByName('categoriaId').AsInteger := F_categoriaId;
+      Try
+        Qry.ExecSQL;
+      Except
+        Result := False;
+      End;
+    Finally
+      if Assigned(Qry) then
+        FreeAndNil(Qry);
+    End;
 end;
 
 function TCategoria.Atualizar: Boolean;
+var Qry : TZQuery;
 begin
-  ShowMessage('Atualizado');
-  Result := True;
+  Try
+    Result := True;
+
+    Qry := TZQuery.Create(Nil);
+    Qry.Connection := ConexaoDB;
+    Qry.SQL.Clear;
+    Qry.SQL.Add(' UPDATE categorias ' +
+                '        SET descricao =:descricao ' +
+                ' WHERE categoriaId = :categoriaId ');
+    Qry.ParamByName('categoriaId').AsInteger := Self.F_categoriaId;
+    Qry.ParamByName('descricao').AsString    := Self.F_descricao;
+    Try
+      Qry.ExecSQL;
+
+    Except
+      Result := False;
+    End;
+
+  finally
+    if Assigned(Qry) then
+      FreeAndNil(Qry);
+  end;
 end;
 
-function TCategoria.Gravar: Boolean;
+function TCategoria.Inserir: Boolean;
+var Qry:TZQuery;
 begin
-  ShowMessage('Gravado');
-  Result := True;
+  try
+    Result:=true;
+
+    Qry:=TZQuery.Create(nil);
+    Qry.Connection:=ConexaoDB;
+    Qry.SQL.Clear;
+    Qry.SQL.Add('INSERT INTO categorias (descricao) values (:descricao)');
+    Qry.ParamByName('descricao').AsString :=Self.F_descricao;
+    Try
+      ConexaoDB.StartTransaction;
+      Qry.ExecSQL;
+      ConexaoDB.Commit;
+    Except
+      ConexaoDB.Rollback;
+      Result:=false;
+    End;
+
+  finally
+    if Assigned(Qry) then
+       FreeAndNil(Qry);
+  end;
 end;
 
 function TCategoria.Seleciona(id: Integer): Boolean;
+var Qry : TZQuery;
 begin
-  Result := True;
+  Try
+    Result := True;
+
+    Qry := TZQuery.Create(Nil);
+    Qry.Connection := ConexaoDB;
+    Qry.SQL.Clear;
+    Qry.SQL.Add(' SELECT categoriaId, ' +
+                '        descricao ' +
+                ' FROM categorias ' +
+                ' WHERE categoriaId = :categoriaId ');
+    Qry.ParamByName('categoriaId').AsInteger := id;
+    Try
+      Qry.Open;
+
+      Self.F_categoriaId := Qry.FieldByName('categoriaId').AsInteger;
+      Self.F_descricao   := Qry.FieldByName('descricao').AsString;
+    Except
+      Result := False;
+    End;
+
+  finally
+    if Assigned(Qry) then
+      FreeAndNil(Qry);
+  end;
 end;
 {$endregion}
 
